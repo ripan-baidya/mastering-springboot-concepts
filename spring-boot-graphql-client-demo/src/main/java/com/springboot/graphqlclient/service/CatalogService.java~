@@ -1,0 +1,4 @@
+package com.springboot.graphqlclient.service;
+
+public class CatalogService {
+}
