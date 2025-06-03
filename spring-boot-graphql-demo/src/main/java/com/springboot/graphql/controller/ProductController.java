@@ -1,0 +1,71 @@
+package com.springboot.graphql.controller;
+
+import com.springboot.graphql.model.Product;
+import com.springboot.graphql.service.ProductService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * In a graphql application, we don't need to use the annotation @RestController and @RequestMapping
+ * because graphql will handle the request and response by itself.
+ * We can simply use the annotation @Controller to handle the request and response.
+ */
+//@RestController
+//@RequestMapping("/api/products")
+@Controller
+@RequiredArgsConstructor
+public class ProductController {
+
+    private final ProductService productService;
+
+    /**
+     * In a graphql application, we don't need to use any mapping annotations
+     * like, getMapping, postMapping, deleteMapping, etc.
+     * because graphql will handle the request and response by itself.
+     * For fetching the data, we use QueryMapping.
+     */
+    // @GetMapping
+    @QueryMapping
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+    }
+
+    /**
+     * In a REST API, parameters are typically passed in the URL.
+     * However, in GraphQL, parameters are passed as arguments in the request body.
+     * The @Argument annotation is used to specify these parameters.
+     */
+    // @GetMapping("/{category}")
+    @QueryMapping
+    public List<Product> findProductByCategory(@Argument String category) {
+        return productService.findProductByCategory(category);
+    }
+
+    /**
+     * We use @MutationMapping to handle the mutation request.
+     * like: create, update, delete
+     */
+    @MutationMapping
+    public Product updateStock(@Argument String id, @Argument Double stock) {
+        return productService.updateStock(id, stock);
+    }
+
+    @MutationMapping
+    public Product receiveNewShipment(@Argument String id,@Argument Double stock) {
+        return productService.receiveNewShipment(id, stock);
+    }
+
+}
+
+
