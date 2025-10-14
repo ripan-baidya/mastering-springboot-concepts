@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: spring-boot-graphql-client-demo
+
+server:
+  port: 8081

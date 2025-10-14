@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: spring-boot-graphql-demo
+
+  # h2 database configuration
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.h2.Driver
+
+  # jpa/hibernate configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  # h2 console settings
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # enabling graphql playground
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
