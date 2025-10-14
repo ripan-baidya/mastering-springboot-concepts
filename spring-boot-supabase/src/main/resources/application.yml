@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-boot-supabase
+
+# To use Supabase database, follow these steps:
+#
+# 1. Create a database in Supabase.
+# 2. In the database, navigate to the "Connection" section.
+# 3. Under the "Type" option, select "JDBC".
+# 4. Scroll down and look for the "Shared Pooler" section.
+# 5. Copy the URL from there and use it as the value for `spring.datasource.url`.
+  datasource:
+    url: ${SUPABASE_URL}
+    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      maximum-pool-size: 10 # optional
+
+  # other configuration, depend on business need
+  jpa:
+    hibernate:
+      ddl-auto: 'create-drop'
+    show-sql: true

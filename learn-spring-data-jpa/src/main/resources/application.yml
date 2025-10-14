@@ -1,0 +1,30 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: hospital-management
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${DB_NAME:hospital}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create # for development environment
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+
+    # Ensure Hibernate creates the schema before running data.sql
+    defer-datasource-initialization: true
+  # Ensure data.sql and schema.sql scripts run automatically
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
+      data-location: classpath:data.sql
+
+
