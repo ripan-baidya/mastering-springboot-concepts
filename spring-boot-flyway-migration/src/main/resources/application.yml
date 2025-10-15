@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: spring-boot-flyway-migration
+
+  # db config
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring_boot_flyway_test
+    username: ripanbaidya
+    password: postgres-pass-24
+
+  # jpa config
+  jpa:
+    hibernate:
+      show-sql: true # show
+      ddl-auto: none # flyway + production
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # flyway config
+  flyway:
+    enabled: true # enable flyway
+    locations:
+      - classpath:/db/migration # location of the migration script
+    # suppose we have a database already in production, and we want to start flyway.
+    # flyway will mark the current schema as baseline 1 and future migrations will be start from 2.
+    baseline-on-migrate: true
