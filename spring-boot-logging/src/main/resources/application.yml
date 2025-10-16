@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: spring-boot-logging
+
+
+# logging configuration
+logging:
+  level:
+    root: info # default level for everything
+    com.example.controller: trace # specific package
+    org.springframework.web: warn # spring web log only warn and error
+
+  # If we want to store our log info into a file, we can use the file property.
+  file:
+    name: logs/app.log
+
+  # format of the log
+  pattern:
+    console: "[%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" # console log format
+    file: "[%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" # file log format

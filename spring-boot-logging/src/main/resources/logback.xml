@@ -1,0 +1,48 @@
+<!--
+This is a one-time setup. To configure Logback, navigate to the resources directory, create a
+new file named logback.xml, and add the code below.
+-->
+<configuration>
+    <!-- The LOG_PATTERN property defines the format of the log messages. -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %c{2.} - %msg%n" />
+
+    <!-- The LOG_PATH property defines the path where the log files will be stored. -->
+    <property name="LOG_PATH" value="logs" />
+
+    <!--
+    This defines an appender named ROLLING_FILE which is responsible for writing log messages to a file.
+    The RollingFileAppender allows log files to roll over based on time or size.
+    -->
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- This rolling policy allows log files to be rolled over based on time. -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- The fileNamePattern defines the pattern for the log file names. -->
+            <fileNamePattern>${LOG_PATH}/application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+            <!-- number of days -->
+            <maxHistory>30</maxHistory>
+
+            <!-- This triggers file rollover based on both size and time. -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <!--
+        The encoder defines how log messages are formatted before being written to the log file.
+        Here, it uses the previously defined LOG_PATTERN.
+        -->
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!--
+    The root logger is the highest level logger in the hierarchy.
+    debug means it will log all messages with level DEBUG and higher (fatal, error, warn, info, debug).
+    -->
+    <root level="debug">
+        <appender-ref ref="ROLLING_FILE" />
+    </root>
+</configuration>
