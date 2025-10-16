@@ -21,5 +21,5 @@ spring:
   # other configuration, depend on business need
   jpa:
     hibernate:
-      ddl-auto: 'create-drop'
+      ddl-auto: 'update'
     show-sql: true
