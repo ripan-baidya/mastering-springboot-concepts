@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: spring-boot-profiles-dev
+
+  # activate this profile
+  config:
+    activate:
+      on-profile: dev
+
+  # configuration for development environment
+  datasource:
+    url: # url
+    username: # username
+    password: # password
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+
+  server:
+    port: 8081
+
+  logging:
+    level:
+      root: DEBUG

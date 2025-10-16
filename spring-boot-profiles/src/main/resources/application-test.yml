@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: spring-boot-profiles-test
+
+  # configuration for test environment

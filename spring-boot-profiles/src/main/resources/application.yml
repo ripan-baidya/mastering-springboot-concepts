@@ -1,0 +1,10 @@
+spring:
+  application:
+    # this is the default profile of spring boot
+    name: spring-boot-profiles-default
+
+  # we can create multiple profiles for different environments. for example - dev, test, stage, prod
+  # activating profile
+  profiles:
+    active: prod
+    default: dev

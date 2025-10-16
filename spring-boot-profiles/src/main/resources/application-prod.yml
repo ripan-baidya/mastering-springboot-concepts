@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: spring-boot-profiles
+
+  config:
+    activate:
+      on-profile: prod
+
+  # configuration for production environment
+  # recommended to use environment variables for sensitive data
+  datasource:
+    url: # url
+    username: # username
+    password: # password
+    jpa:
+      hibernate:
+        ddl-auto: validate
+      show-sql: false
+
+  logging:
+    level:
+      root: WARN
