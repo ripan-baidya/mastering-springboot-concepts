@@ -2,9 +2,7 @@ services:
   redis:
     image: 'redis:7.4-alpine'
     container_name: redis_test
-    environment:
-      - REDIS_PASSWORD=password
-    restart: unless-stopped
+    restart: always
     ports:
       - '6379:6379'
     command: ["redis-server", "--appendonly", "yes"]
