@@ -1,0 +1,44 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: spring-security-jwt
+
+  # In a production environment, user credentials should be stored securely in a database.
+  # For testing purposes only, we can override the default spring security user credentials with our own values.
+#  security:
+#    user:
+#      name: user
+#      password: pass
+#      roles:
+#        - ADMIN
+#        - USER
+
+  # Jpa & H2 DB
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+app:
+  jwt:
+    # For security reasons, do not hardcode the JWT secret in production. Instead, it should be stored
+    # securely in a secrets manager or environment variable.
+    secret: knvoanof3j-20cjoin0j029c=2n02j0i20nci2honc902joi2nw90h2on3noin20wvj230nc
+    expiration: 3600000 # 1 hours in milliseconds

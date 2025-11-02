@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.springboot</groupId>
-    <artifactId>spring-boot-graphql-client-demo</artifactId>
+    <artifactId>spring-boot-graphql-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-graphql-client-demo</name>
     <description>spring-boot-graphql-client-demo</description>

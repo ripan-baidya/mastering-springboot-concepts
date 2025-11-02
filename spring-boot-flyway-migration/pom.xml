@@ -72,31 +72,31 @@
 	<build>
 		<plugins>
             <!--
-            Suppose we want to use flyway command for managmenet, we have to make some setup here
+            Suppose we want to use flyway command for management, we have to make some setup here
             in the pom.xml file.
             -->
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>10.35.0</version>
+                <version>10.17.0</version> <!-- Use latest stable Flyway version -->
                 <configuration>
-                    <!-- database configuration -->
-                    <!--
-                    Please consider using environment variables or a secure configuration mechanism to store
-                    the database credentials. Directly including sensitive information in the pom.xml file can
-                    pose a security risk.
-                    -->
                     <url>jdbc:postgresql://localhost:5432/spring_boot_flyway_test</url>
-                    <username>ripanbaidya</username>
+                    <user>ripanbaidya</user>
                     <password>postgres-pass-24</password>
-
-                    <!-- location of the migration script -->
                     <locations>
                         <location>filesystem:src/main/resources/db/migration</location>
                     </locations>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.7.3</version> <!-- PostgreSQL JDBC driver -->
+                    </dependency>
+                </dependencies>
             </plugin>
-			<plugin>
+
+            <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
